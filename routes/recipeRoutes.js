@@ -42,8 +42,8 @@ module.exports = (app) => {
 		const newRecipe = new Recipe({
 			title,
 			description,
-			ingredients: ingredients.split(','),
-			directions: directions.split(','),
+			ingredients,
+			directions,
 			_user: req.user.id,
 			dateUpdated: Date.now()
 		});
