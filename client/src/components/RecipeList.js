@@ -30,7 +30,7 @@ class RecipeList extends Component {
 
 	renderRecipes() {
 		if (this.props.recipes.length) {
-			return this.props.recipes.map((recipe) => {
+			return this.props.recipes.reverse().map((recipe) => {
 				return (
 					<Grid key={recipe._id} item>
 						<RecipeCard {...recipe} />

@@ -8,6 +8,8 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import BrandIcon from '@material-ui/icons/Kitchen';
+
 import GoogleButton from 'react-google-button';
 import { Link } from 'react-router-dom';
 
@@ -54,16 +56,15 @@ class Header extends Component {
 	}
 
 	render() {
+		const { classes } = this.props;
 		return (
-			<div className={this.props.classes.root}>
+			<div className={classes.root}>
 				<AppBar position="static">
 					<Toolbar>
-						<Typography
-							component={Link}
-							to="/"
-							variant="title"
-							color="inherit"
-							className={this.props.classes.flex}>
+						<IconButton className={classes.menuButton} color="inherit" aria-label="brand">
+							<BrandIcon />
+						</IconButton>
+						<Typography component={Link} to="/" variant="title" color="inherit" className={classes.flex}>
 							Meal Mixtures
 						</Typography>
 						{this.renderContent()}

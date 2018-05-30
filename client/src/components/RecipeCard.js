@@ -8,7 +8,10 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import FavoriteIcon from '@material-ui/icons/Favorite';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Favorite from '@material-ui/icons/Favorite';
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import PageviewIcon from '@material-ui/icons/ZoomOutMap';
 
 import ShareMenu from './ShareMenu';
@@ -28,9 +31,16 @@ function RecipeCard(props) {
 		<Card className={classes.card}>
 			<CardHeader
 				action={
-					<IconButton aria-label="Add to favorites" color="secondary">
-						<FavoriteIcon />
-					</IconButton>
+					<FormControlLabel
+						control={
+							<Checkbox
+								aria-label="Add to favorites"
+								icon={<FavoriteBorder />}
+								checkedIcon={<Favorite />}
+								value="checkedH"
+							/>
+						}
+					/>
 				}
 				title={title}
 				subheader={new Date(dateUpdated).toLocaleDateString('en-US', {
