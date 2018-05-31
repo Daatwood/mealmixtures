@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-
+import { Typography, Grid } from '@material-ui/core';
 import RecipeCard from './RecipeCard';
-import { Typography } from '@material-ui/core';
 
 const styles = (theme) => ({
 	root: {
@@ -29,9 +26,13 @@ class RecipeList extends Component {
 	}
 
 	renderRecipes() {
-		const { recipes } = this.props;
-		if (!recipes) {
-			return <p>Loading Recipes</p>;
+		const { recipes, loading, error } = this.props;
+		if (loading) {
+			return (
+				<Grid>
+					<Typography variant="display1">Loading Recipes...</Typography>
+				</Grid>
+			);
 		} else if (recipes.length) {
 			return recipes.map((recipe) => {
 				return (
@@ -41,7 +42,11 @@ class RecipeList extends Component {
 				);
 			});
 		} else {
-			return <p>No Recipes Found</p>;
+			return (
+				<Grid>
+					<Typography variant="display1">No Recipes found.</Typography>
+				</Grid>
+			);
 		}
 	}
 
@@ -60,12 +65,13 @@ class RecipeList extends Component {
 	}
 }
 
-RecipeList.propTypes = {
-	classes: PropTypes.object.isRequired
-};
-
 function mapStateToProps({ recipes }) {
-	return { recipes: recipes.list };
+	console.log(recipes);
+	return {
+		recipes: recipes.list,
+		loading: recipes.loading,
+		error: recipes.error
+	};
 }
 
 export default connect(mapStateToProps, null)(withStyles(styles)(RecipeList));

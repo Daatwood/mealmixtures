@@ -43,27 +43,22 @@ module.exports = (app) => {
 			},
 			{
 				new: true
-			},
-			handleError
-		)
-			.exec()
-			.catch((error) => handleError(error, res));
+			}
+		).exec();
 		if (recipe) {
 			res.status(200).send(recipe);
 		} else {
-			res.status(404).send({ error: `recipe ${recipeId} not found.` });
+			console.log('not found');
+			res.status(404).send({ message: `recipe ${recipeId} not found.` });
 		}
 	});
 
 	app.delete('/api/recipes/:recipeId', requireLogin, async (req, res) => {
 		const recipeId = req.params.recipeId;
-		const recipe = await Recipe.findOneAndRemove(
-			{
-				_id: recipeId,
-				_user: req.user.id
-			},
-			handleError
-		)
+		const recipe = await Recipe.findOneAndRemove({
+			_id: recipeId,
+			_user: req.user.id
+		})
 			.exec()
 			.catch((error) => handleCatch(error, res));
 		if (recipe) {
