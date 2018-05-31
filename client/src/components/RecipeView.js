@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link, withRouter } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
+import { Button, Paper } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -13,12 +15,10 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import Badge from '@material-ui/core/Badge';
-import Favorite from '@material-ui/icons/Favorite';
-import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
-import RemoveRedEye from '@material-ui/icons/RemoveRedEye';
+import { Favorite, FavoriteBorder, RemoveRedEye, Edit, Delete } from '@material-ui/icons';
 import IconButton from '@material-ui/core/IconButton';
 import Rating from './Rating';
-import { green, grey } from '@material-ui/core/colors';
+import { green, yellow, red, grey } from '@material-ui/core/colors';
 
 import deepOrange from '@material-ui/core/colors/deepOrange';
 import * as actions from '../actions';
@@ -43,6 +43,23 @@ const styles = (theme) => ({
 	},
 	sizeIcon: {
 		fontSize: 40
+	},
+	button: {
+		margin: theme.spacing.unit
+	},
+	editButton: {
+		color: theme.palette.getContrastText(yellow[500]),
+		backgroundColor: yellow[500],
+		'&:hover': {
+			backgroundColor: yellow[700]
+		}
+	},
+	deleteButton: {
+		color: theme.palette.getContrastText(red[500]),
+		backgroundColor: red[500],
+		'&:hover': {
+			backgroundColor: red[700]
+		}
 	}
 });
 
@@ -76,17 +93,47 @@ class RecipeView extends Component {
 		this.setState({ rating: value });
 	};
 
+	handleDelete = () => {
+		this.props.deleteRecipe(this.props.recipe._id, this.props.history);
+	};
+
+	renderOwnerActions() {
+		if (!this.props.user) return;
+		const { classes, recipe: { _user, _id } } = this.props;
+		const user_id = this.props.user._id;
+
+		if (_user === user_id)
+			return [
+				<Button
+					key="1"
+					variant="fab"
+					aria-label="edit"
+					color="primary"
+					className={classes.button}
+					component={Link}
+					to={`/recipes/${_id}/edit`}>
+					<Edit />
+				</Button>,
+				<Button
+					key="2"
+					variant="fab"
+					aria-label="delete"
+					className={classNames(classes.button, classes.deleteButton)}
+					onClick={this.handleDelete}>
+					<Delete />
+				</Button>
+			];
+	}
+
 	renderContent() {
 		if (this.props.recipe) {
-			console.log(this.props.recipe);
 			const { classes } = this.props;
 			return (
-				<Grid container spacing={24}>
-					<Grid item xs={10}>
+				<Grid container spacing={16}>
+					<Grid item xs={10} sm={8}>
 						<Typography variant="display3">{this.props.recipe.title}</Typography>
-						<Rating value={this.state.rating} max={5} onChange={(value) => this.handleRating(value)} />
 					</Grid>
-					<Grid item xs={2}>
+					<Grid item xs={2} sm={4}>
 						<FormControlLabel
 							control={
 								<Checkbox
@@ -97,9 +144,16 @@ class RecipeView extends Component {
 								/>
 							}
 						/>
+						{this.renderOwnerActions()}
+					</Grid>
+					<Grid item xs={10}>
+						<Rating value={this.state.rating} max={5} onChange={(value) => this.handleRating(value)} />
+					</Grid>
+					<Grid item xs={2}>
 						<Typography variant="caption">123 Views</Typography>
 						<Typography variant="caption">34 Ratings</Typography>
 					</Grid>
+
 					<Grid item xs={12} sm={6}>
 						<Paper className={classes.paper}>
 							<Typography variant="subheading" color="inherit">
@@ -175,7 +229,6 @@ class RecipeView extends Component {
 	}
 
 	render() {
-		console.log(this.props.match.params.id);
 		const { classes } = this.props;
 		return <div className={classes.root}>{this.renderContent()}</div>;
 	}
@@ -186,8 +239,10 @@ RecipeView.propTypes = {
 };
 
 function mapStateToProps(state) {
-	console.log(state);
-	return { recipe: state.recipes.active };
+	return {
+		recipe: state.recipes.active,
+		user: state.auth
+	};
 }
 
-export default connect(mapStateToProps, actions)(withStyles(styles)(RecipeView));
+export default connect(mapStateToProps, actions)(withRouter(withStyles(styles)(RecipeView)));

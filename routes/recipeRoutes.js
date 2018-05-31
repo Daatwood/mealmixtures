@@ -10,6 +10,12 @@ module.exports = (app) => {
 		res.send(recipes);
 	});
 
+	app.get('/api/recipes/private', requireLogin, async (req, res) => {
+		const recipes = await Recipe.find({ _user: req.user.id });
+
+		res.send(recipes);
+	});
+
 	app.get('/api/recipes/:recipeId', async (req, res) => {
 		const recipeId = req.params.recipeId;
 		const recipe = await Recipe.findById(recipeId).exec();
@@ -20,15 +26,46 @@ module.exports = (app) => {
 		}
 	});
 
-	app.get('/api/myrecipes', requireLogin, async (req, res) => {
-		const recipes = await Recipe.find({ _user: req.user.id });
-
-		res.send(recipes);
+	app.put('/api/recipes/:recipeId', requireLogin, async (req, res) => {
+		const recipeId = req.params.recipeId;
+		const { title, description, ingredients, directions } = req.body;
+		const recipe = await Recipe.findOneAndUpdate(
+			{
+				_id: recipeId,
+				_user: req.user.id
+			},
+			{
+				title,
+				description,
+				ingredients,
+				directions,
+				dateUpdated: Date.now()
+			},
+			{
+				new: true
+			},
+			handleError
+		)
+			.exec()
+			.catch((error) => handleError(error, res));
+		if (recipe) {
+			res.status(200).send(recipe);
+		} else {
+			res.status(404).send({ error: `recipe ${recipeId} not found.` });
+		}
 	});
 
 	app.delete('/api/recipes/:recipeId', requireLogin, async (req, res) => {
 		const recipeId = req.params.recipeId;
-		const recipe = await Recipe.findByIdAndRemove(recipeId).exec();
+		const recipe = await Recipe.findOneAndRemove(
+			{
+				_id: recipeId,
+				_user: req.user.id
+			},
+			handleError
+		)
+			.exec()
+			.catch((error) => handleCatch(error, res));
 		if (recipe) {
 			res.status(200).send(recipe);
 		} else {
@@ -38,7 +75,6 @@ module.exports = (app) => {
 
 	app.post('/api/recipes', requireLogin, async (req, res) => {
 		const { title, description, ingredients, directions } = req.body;
-		console.log(req.body);
 		const newRecipe = new Recipe({
 			title,
 			description,
@@ -56,4 +92,8 @@ module.exports = (app) => {
 			res.status(422).send(err);
 		}
 	});
+
+	function handleError(error, res) {
+		console.log('ERR: ' + error + '|' + res);
+	}
 };

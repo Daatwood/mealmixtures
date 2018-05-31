@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import Header from './Header';
 import RecipeList from './RecipeList';
 import RecipeListItem from './RecipeListItem';
 import RecipeView from './RecipeView';
+import RecipeEdit from './RecipeEdit';
+import Dashboard from './Dashboard';
+import Landing from './Landing';
 import './App.css';
 
 const Settings = () => <h2>Settings</h2>;
-const Landing = () => <h2>Landing</h2>;
 
 class App extends Component {
 	componentDidMount() {
@@ -25,8 +27,9 @@ class App extends Component {
 						<div className="container">
 							<Route exact path="/" component={Landing} />
 							<Route exact path="/recipes" component={RecipeList} />
-							<Route exact path="/dashboard" component={RecipeList} />
-							<Route path="/recipes/:id" component={RecipeView} />
+							<Route exact path="/dashboard" component={Dashboard} />
+							<Route exact path="/recipes/:id" component={RecipeView} />
+							<Route path="/recipes/:id/edit" component={RecipeEdit} />
 							<Route path="/recipe/new" component={RecipeListItem} />
 							<Route path="/settings" component={Settings} />
 						</div>
@@ -36,5 +39,13 @@ class App extends Component {
 		);
 	}
 }
+//TODO FIX on slow connections user will be redirected to '/'
+const PrivateRoute = ({ auth, component: Component, ...rest }) => (
+	<Route {...rest} render={(props) => (!!auth ? <Component {...props} /> : <Redirect to="/" />)} />
+);
+// State is from reducer, auth is property on authReducer
+function mapStateToProps({ auth }) {
+	return { auth };
+}
 
-export default connect(null, actions)(App);
+export default connect(mapStateToProps, actions)(App);

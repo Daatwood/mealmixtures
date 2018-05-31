@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import RecipeForm from './RecipeForm';
 import { withRouter } from 'react-router-dom';
 import * as actions from '../actions';
+import { Typography } from '@material-ui/core';
 
 class RecipeListItem extends Component {
 	handleSubmit = (values) => {
@@ -11,7 +12,7 @@ class RecipeListItem extends Component {
 	render() {
 		return (
 			<div>
-				<h1>New Recipe</h1>
+				<Typography variant="display3">New Recipe</Typography>
 				<RecipeForm onSubmit={this.handleSubmit} />
 			</div>
 		);

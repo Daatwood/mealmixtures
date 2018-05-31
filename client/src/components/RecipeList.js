@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
-import { fetchRecipes } from '../actions';
 import RecipeCard from './RecipeCard';
+import { Typography } from '@material-ui/core';
 
 const styles = (theme) => ({
 	root: {
@@ -25,12 +25,15 @@ const styles = (theme) => ({
 
 class RecipeList extends Component {
 	componentDidMount() {
-		this.props.fetchRecipes();
+		this.props.recipesAction();
 	}
 
 	renderRecipes() {
-		if (this.props.recipes.length) {
-			return this.props.recipes.reverse().map((recipe) => {
+		const { recipes } = this.props;
+		if (!recipes) {
+			return <p>Loading Recipes</p>;
+		} else if (recipes.length) {
+			return recipes.map((recipe) => {
 				return (
 					<Grid key={recipe._id} item>
 						<RecipeCard {...recipe} />
@@ -43,11 +46,13 @@ class RecipeList extends Component {
 	}
 
 	render() {
-		const { classes } = this.props;
+		const { classes, title } = this.props;
 		return (
 			<div>
-				<h1>Recipes</h1>
 				<Grid container className={classes.root} justify="space-around" spacing={16}>
+					<Grid item xs={12}>
+						<Typography variant="display1">{title}</Typography>
+					</Grid>
 					{this.renderRecipes()}
 				</Grid>
 			</div>
@@ -60,8 +65,7 @@ RecipeList.propTypes = {
 };
 
 function mapStateToProps({ recipes }) {
-	console.log(recipes);
 	return { recipes: recipes.list };
 }
 
-export default connect(mapStateToProps, { fetchRecipes })(withStyles(styles)(RecipeList));
+export default connect(mapStateToProps, null)(withStyles(styles)(RecipeList));

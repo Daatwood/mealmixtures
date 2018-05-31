@@ -1,5 +1,5 @@
 import { FETCH_RECIPES, FETCH_RECIPE } from '../actions/types';
-const INITIAL_STATE = { list: [], active: null };
+const INITIAL_STATE = { list: null, active: null };
 export default function(state = INITIAL_STATE, action) {
 	switch (action.type) {
 		case FETCH_RECIPES:
@@ -7,6 +7,6 @@ export default function(state = INITIAL_STATE, action) {
 		case FETCH_RECIPE:
 			return { ...state, active: action.payload };
 		default:
-			return state;
+			return INITIAL_STATE;
 	}
 }

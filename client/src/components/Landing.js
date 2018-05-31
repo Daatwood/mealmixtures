@@ -1,0 +1,18 @@
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import RecipeList from './RecipeList';
+
+import * as actions from '../actions';
+import { Typography } from '@material-ui/core';
+
+class Landing extends Component {
+	render() {
+		return (
+			<div>
+				<RecipeList title="Popular Recipes" recipesAction={this.props.fetchRecipes} />
+			</div>
+		);
+	}
+}
+
+export default connect(null, actions)(Landing);

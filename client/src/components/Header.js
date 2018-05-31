@@ -24,7 +24,8 @@ import { Link } from 'react-router-dom';
 
 const styles = {
 	root: {
-		flexGrow: 1
+		flexGrow: 1,
+		marginBottom: '24px'
 	},
 	flex: {
 		flex: 1
@@ -51,7 +52,7 @@ class Header extends Component {
 				];
 			default:
 				return [
-					<Button button key="1" component={Link} to="/recipe/new" color="inherit">
+					<Button key="1" component={Link} to="/recipe/new" color="inherit">
 						Add Recipe
 					</Button>,
 					<Button key="2" component={Link} to="/dashboard" color="inherit">

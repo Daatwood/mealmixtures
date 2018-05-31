@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { reduxForm, Field, FieldArray } from 'redux-form';
-
-import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
-import { Grid, TextField, Paper, Button } from '@material-ui/core';
-import { green } from '@material-ui/core/colors';
+import { Grid, Paper, Button } from '@material-ui/core';
+import { green, red } from '@material-ui/core/colors';
 
 import formFields from './formFields';
 import RecipeField from './RecipeField';
@@ -83,16 +82,31 @@ class RecipeForm extends Component {
 							/>
 						</Paper>
 					</Grid>
+					<Grid item xs={12}>
+						<Button
+							variant="outlined"
+							component={Link}
+							to="/dashboard"
+							color="secondary"
+							size="large"
+							style={{
+								color: red[600]
+							}}>
+							Back
+						</Button>
+						<Button
+							variant="raised"
+							type="submit"
+							size="large"
+							style={{
+								backgroundColor: green[600],
+								color: 'white',
+								float: 'right'
+							}}>
+							{!this.props.initialValues ? 'Save' : 'Create'}
+						</Button>
+					</Grid>
 				</Grid>
-				<Button
-					variant="raised"
-					type="submit"
-					style={{
-						backgroundColor: green[600],
-						color: 'white'
-					}}>
-					Create
-				</Button>
 			</form>
 		);
 	}
