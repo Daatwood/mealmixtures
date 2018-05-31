@@ -1,46 +1,105 @@
 import React, { Component } from 'react';
 import { reduxForm, Field, FieldArray } from 'redux-form';
+
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import { Grid, TextField, Paper, Button } from '@material-ui/core';
+import { green } from '@material-ui/core/colors';
+
 import formFields from './formFields';
 import RecipeField from './RecipeField';
 import RecipeFieldArray from './RecipeFieldArray';
 
-// class RecipeForm extends Component {
-// 	renderFields() {
-// 		return formFields.map(({ label, name }) => {
-// 			return <Field key={name} component={RecipeField} type="text" label={label} name={name} />;
-// 		});
-// 	}
-
-// 	render() {
-// 		return (
-// 			<form onSubmit={() => console.log(this.props)}>
-// 				{this.renderFields()}
-// 				<button type="submit">Submit</button>
-// 			</form>
-// 		);
-// 	}
-// }
-
-// export default reduxForm({ form: 'recipeForm' })(RecipeForm);
+const styles = (theme) => ({
+	root: {
+		flexGrow: 1,
+		paddingTop: '20px'
+	},
+	paper: {
+		padding: theme.spacing.unit * 2,
+		textAlign: 'left',
+		color: theme.palette.text.secondary
+	},
+	size: {
+		padding: theme.spacing.unit * 2,
+		width: 80,
+		height: 80
+	},
+	sizeIcon: {
+		fontSize: 40
+	}
+});
 
 class RecipeForm extends Component {
 	renderFields() {
-		return formFields.map(({ label, name, isArray }) => {
+		return formFields.map(({ label, name, isArray, required }) => {
 			if (isArray) {
 				return <FieldArray key={name} name={name} label={label} component={RecipeFieldArray} />;
 			} else {
-				return <Field key={name} component={RecipeField} type="text" label={label} name={name} />;
+				return <Field key={name} component={RecipeField} type="text" label={label} name={name} required />;
 			}
 		});
 	}
-	render() {
-		const { handleSubmit } = this.props;
+
+	renderForm() {
+		const { classes, handleSubmit } = this.props;
 		return (
-			<form onSubmit={handleSubmit}>
-				{this.renderFields()}
-				<button type="submit">Submit</button>
+			<form onSubmit={handleSubmit} autoComplete="off">
+				<Grid container spacing={24}>
+					<Grid item xs={12}>
+						<Paper className={classes.paper}>
+							<Field key="title" component={RecipeField} type="text" label="Recipe Name" name="title" />
+						</Paper>
+					</Grid>
+					<Grid item xs={12} sm={6}>
+						<Paper className={classes.paper}>
+							<Field
+								key="description"
+								component={RecipeField}
+								type="text"
+								label="Recipe Description"
+								name="description"
+								multiline
+							/>
+						</Paper>
+					</Grid>
+					<Grid item xs={12} sm={6}>
+						<Paper>
+							<FieldArray
+								key="ingredients"
+								name="ingredients"
+								label="Ingredient"
+								component={RecipeFieldArray}
+							/>
+						</Paper>
+					</Grid>
+					<Grid item xs={12}>
+						<Paper>
+							<FieldArray
+								key="directions"
+								name="directions"
+								label="Direction"
+								component={RecipeFieldArray}
+							/>
+						</Paper>
+					</Grid>
+				</Grid>
+				<Button
+					variant="raised"
+					type="submit"
+					style={{
+						backgroundColor: green[600],
+						color: 'white'
+					}}>
+					Create
+				</Button>
 			</form>
 		);
+	}
+
+	render() {
+		const { classes } = this.props;
+		return <div className={classes.root}>{this.renderForm()}</div>;
 	}
 }
 
@@ -64,4 +123,4 @@ function validate(values) {
 	return errors;
 }
 
-export default reduxForm({ form: 'recipe', validate })(RecipeForm);
+export default reduxForm({ form: 'recipe', validate })(withStyles(styles)(RecipeForm));

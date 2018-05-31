@@ -11,7 +11,7 @@ class RecipeListItem extends Component {
 	render() {
 		return (
 			<div>
-				<h1>Recipe</h1>
+				<h1>New Recipe</h1>
 				<RecipeForm onSubmit={this.handleSubmit} />
 			</div>
 		);

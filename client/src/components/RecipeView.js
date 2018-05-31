@@ -43,12 +43,6 @@ const styles = (theme) => ({
 	},
 	sizeIcon: {
 		fontSize: 40
-	},
-	ingredientCheck: {
-		color: grey[300],
-		'&$checked': {
-			color: green[600]
-		}
 	}
 });
 
@@ -108,13 +102,17 @@ class RecipeView extends Component {
 					</Grid>
 					<Grid item xs={12} sm={6}>
 						<Paper className={classes.paper}>
-							<Typography variant="caption">Description</Typography>
+							<Typography variant="subheading" color="inherit">
+								Description
+							</Typography>
 							<Typography variant="body1">{this.props.recipe.description}</Typography>
 						</Paper>
 					</Grid>
 					<Grid item xs={12} sm={6}>
 						<Paper className={classes.paper}>
-							Ingredients
+							<Typography variant="subheading" color="inherit">
+								Ingredients
+							</Typography>
 							<List>
 								{this.props.recipe.ingredients.map((value, index) => (
 									<ListItem
@@ -143,7 +141,9 @@ class RecipeView extends Component {
 					</Grid>
 					<Grid item xs={12} sm={12}>
 						<Paper className={classes.paper}>
-							Directions
+							<Typography variant="subheading" color="inherit">
+								Directions
+							</Typography>
 							<List className={classes.paper}>
 								{this.props.recipe.directions.map((value, index) => (
 									<ListItem key={index} role={undefined} button onClick={this.handleToggle(value)}>

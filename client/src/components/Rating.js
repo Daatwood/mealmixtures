@@ -37,7 +37,7 @@ class Rating extends Component {
 	}
 
 	render() {
-		const { classes, max, value, iconFilled, iconHovered, iconNormal, disabled, onChange } = this.props;
+		const { max, value, disabled, onChange } = this.props;
 		const rating = [];
 		for (let i = 1; i <= max; i++) {
 			rating.push(

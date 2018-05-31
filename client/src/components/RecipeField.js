@@ -1,12 +1,17 @@
 import React from 'react';
 
-export default ({ input, label, meta: { active, error, touched } }) => {
-	return (
-		<div>
-			<label>{label}</label>
+import { TextField } from '@material-ui/core';
 
-			<input {...input} />
-			<span>{touched && error}</span>
-		</div>
+export default ({ input, label, multiline, meta: { active, error, touched } }) => {
+	return (
+		<TextField
+			{...input}
+			error={touched && !!error}
+			helperText={touched && error}
+			id="error"
+			label={label}
+			multiline={multiline}
+			fullWidth
+		/>
 	);
 };

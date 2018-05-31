@@ -2,11 +2,20 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
+import {
+	AppBar,
+	Toolbar,
+	Typography,
+	Button,
+	IconButton,
+	Hidden,
+	Drawer,
+	List,
+	ListItem,
+	ListItemText,
+	Menu,
+	MenuItem
+} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import BrandIcon from '@material-ui/icons/Kitchen';
 
@@ -30,19 +39,19 @@ class Header extends Component {
 	renderContent() {
 		switch (this.props.auth) {
 			case null:
-				return;
+				return [];
 			case false:
-				return (
+				return [
 					<GoogleButton
 						type="light"
 						onClick={() => {
 							window.location = '/auth/google';
 						}}
 					/>
-				);
+				];
 			default:
 				return [
-					<Button key="1" component={Link} to="/recipe/new" color="inherit">
+					<Button button key="1" component={Link} to="/recipe/new" color="inherit">
 						Add Recipe
 					</Button>,
 					<Button key="2" component={Link} to="/dashboard" color="inherit">
@@ -61,9 +70,16 @@ class Header extends Component {
 			<div className={classes.root}>
 				<AppBar position="static">
 					<Toolbar>
-						<IconButton className={classes.menuButton} color="inherit" aria-label="brand">
-							<BrandIcon />
-						</IconButton>
+						<Hidden only="xs">
+							<IconButton
+								component={Link}
+								to="/"
+								className={classes.menuButton}
+								color="inherit"
+								aria-label="Menu">
+								<BrandIcon />
+							</IconButton>
+						</Hidden>
 						<Typography component={Link} to="/" variant="title" color="inherit" className={classes.flex}>
 							Meal Mixtures
 						</Typography>
