@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 const bodyParser = require('body-parser');
+const helmet = require('helmet');
 const keys = require('./config/keys');
 
 // Load classes
@@ -15,6 +16,7 @@ require('./services/passport');
 mongoose.connect(keys.mongoURI);
 
 const app = express();
+app.use(helmet());
 app.use(bodyParser.json());
 app.use(
 	cookieSession({

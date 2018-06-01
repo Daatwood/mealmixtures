@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import * as actions from '../actions';
 import { Typography } from '@material-ui/core';
 
-class RecipeListItem extends Component {
+class RecipeNew extends Component {
 	handleSubmit = (values) => {
 		this.props.submitRecipe(values, this.props.history);
 	};
@@ -18,4 +18,4 @@ class RecipeListItem extends Component {
 		);
 	}
 }
-export default connect(null, actions)(withRouter(RecipeListItem));
+export default connect(null, actions)(withRouter(RecipeNew));

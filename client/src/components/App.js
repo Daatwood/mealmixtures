@@ -3,8 +3,7 @@ import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import Header from './Header';
-import RecipeList from './RecipeList';
-import RecipeListItem from './RecipeListItem';
+import RecipeNew from './RecipeNew';
 import RecipeView from './RecipeView';
 import RecipeEdit from './RecipeEdit';
 import Dashboard from './Dashboard';
@@ -29,7 +28,7 @@ class App extends Component {
 							<Route exact path="/dashboard" component={Dashboard} />
 							<Route exact path="/recipes/:id" component={RecipeView} />
 							<Route path="/recipes/:id/edit" component={RecipeEdit} />
-							<Route path="/recipe/new" component={RecipeListItem} />
+							<Route path="/recipe/new" component={RecipeNew} />
 							<Route path="/settings" component={Settings} />
 						</div>
 					</div>

@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { IconButton, Paper } from '@material-ui/core';
+import { IconButton } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import { Star, StarBorder } from '@material-ui/icons';
-import orange from '@material-ui/core/colors/orange';
-import grey from '@material-ui/core/colors/grey';
+import { orange, grey } from '@material-ui/core/colors';
 
 const styles = {
 	disabled: {

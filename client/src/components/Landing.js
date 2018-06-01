@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import RecipeList from './RecipeList';
 
+import RecipeList from './RecipeList';
 import * as actions from '../actions';
-import { Typography } from '@material-ui/core';
 
 class Landing extends Component {
 	render() {

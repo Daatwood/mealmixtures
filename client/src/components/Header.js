@@ -1,22 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+
 import { withStyles } from '@material-ui/core/styles';
-import {
-	AppBar,
-	Toolbar,
-	Typography,
-	Button,
-	IconButton,
-	Hidden,
-	Drawer,
-	List,
-	ListItem,
-	ListItemText,
-	Menu,
-	MenuItem
-} from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
+import { AppBar, Toolbar, Typography, Button, IconButton, Hidden } from '@material-ui/core';
 import BrandIcon from '@material-ui/icons/Kitchen';
 
 import GoogleButton from 'react-google-button';
@@ -91,9 +77,7 @@ class Header extends Component {
 		);
 	}
 }
-Header.propTypes = {
-	classes: PropTypes.object.isRequired
-};
+
 // State is from reducer, auth is property on authReducer
 function mapStateToProps({ auth }) {
 	return { auth };

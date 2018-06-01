@@ -33,6 +33,8 @@ class RecipeList extends Component {
 					<Typography variant="display1">Loading Recipes...</Typography>
 				</Grid>
 			);
+		} else if (error) {
+			return <h1>Error: {error}</h1>;
 		} else if (recipes.length) {
 			return recipes.map((recipe) => {
 				return (

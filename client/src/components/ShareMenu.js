@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
+import { Menu, MenuItem, IconButton } from '@material-ui/core';
 import ShareIcon from '@material-ui/icons/Share';
-import IconButton from '@material-ui/core/IconButton';
 class ShareMenu extends Component {
 	state = {
 		anchorEl: null

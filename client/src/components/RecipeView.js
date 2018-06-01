@@ -6,21 +6,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import { Button, Paper } from '@material-ui/core';
-import Grid from '@material-ui/core/Grid';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Checkbox from '@material-ui/core/Checkbox';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Typography from '@material-ui/core/Typography';
-import Avatar from '@material-ui/core/Avatar';
-import Badge from '@material-ui/core/Badge';
-import { Favorite, FavoriteBorder, RemoveRedEye, Edit, Delete } from '@material-ui/icons';
-import IconButton from '@material-ui/core/IconButton';
+import { Grid, List, ListItem, ListItemText, Checkbox, FormControlLabel, Typography, Avatar } from '@material-ui/core';
+import { Favorite, FavoriteBorder, Edit, Delete } from '@material-ui/icons';
+import { green, yellow, red, grey, deepOrange } from '@material-ui/core/colors';
 import Rating from './Rating';
-import { green, yellow, red, grey } from '@material-ui/core/colors';
-
-import deepOrange from '@material-ui/core/colors/deepOrange';
 import * as actions from '../actions';
 
 const styles = (theme) => ({
