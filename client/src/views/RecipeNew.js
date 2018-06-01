@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import RecipeForm from './RecipeForm';
 import { withRouter } from 'react-router-dom';
 import * as actions from '../actions';
 import { Typography } from '@material-ui/core';
+
+import RecipeForm from '../components/RecipeForm';
 
 class RecipeNew extends Component {
 	handleSubmit = (values) => {

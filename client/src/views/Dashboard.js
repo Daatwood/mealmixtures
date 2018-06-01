@@ -7,7 +7,7 @@ import { Add as AddIcon } from '@material-ui/icons';
 import { green } from '@material-ui/core/colors';
 
 import * as actions from '../actions';
-import RecipeList from './RecipeList';
+import RecipeList from '../components/RecipeList';
 
 const styles = (theme) => ({
 	fab: {

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import RecipeForm from './RecipeForm';
+
 import { withRouter } from 'react-router-dom';
 import { Typography } from '@material-ui/core';
 import * as actions from '../actions';
+
+import RecipeForm from '../components/RecipeForm';
 
 class RecipeEdit extends Component {
 	componentWillMount() {
@@ -22,7 +24,7 @@ class RecipeEdit extends Component {
 		);
 	}
 }
-function mapStateToProps(state) {
-	return { initialValues: state.recipes.active };
+function mapStateToProps({ recipes }) {
+	return { initialValues: recipes.active };
 }
 export default connect(mapStateToProps, actions)(withRouter(RecipeEdit));

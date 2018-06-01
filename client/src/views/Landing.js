@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import RecipeList from './RecipeList';
+import RecipeList from '../components/RecipeList';
 import * as actions from '../actions';
 
 class Landing extends Component {

@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
-import { Typography, Grid } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
+
+import GridContainer from './GridContainer';
+import GridItem from './GridItem';
+
 import RecipeCard from './RecipeCard';
 
 const styles = (theme) => ({
@@ -29,25 +33,25 @@ class RecipeList extends Component {
 		const { recipes, loading, error } = this.props;
 		if (loading) {
 			return (
-				<Grid>
+				<GridItem>
 					<Typography variant="display1">Loading Recipes...</Typography>
-				</Grid>
+				</GridItem>
 			);
 		} else if (error) {
 			return <h1>Error: {error}</h1>;
 		} else if (recipes.length) {
 			return recipes.map((recipe) => {
 				return (
-					<Grid key={recipe._id} item>
+					<GridItem key={recipe._id}>
 						<RecipeCard {...recipe} />
-					</Grid>
+					</GridItem>
 				);
 			});
 		} else {
 			return (
-				<Grid>
+				<GridItem>
 					<Typography variant="display1">No Recipes found.</Typography>
-				</Grid>
+				</GridItem>
 			);
 		}
 	}
@@ -55,14 +59,12 @@ class RecipeList extends Component {
 	render() {
 		const { classes, title } = this.props;
 		return (
-			<div>
-				<Grid container className={classes.root} justify="space-around" spacing={16}>
-					<Grid item xs={12}>
-						<Typography variant="display1">{title}</Typography>
-					</Grid>
-					{this.renderRecipes()}
-				</Grid>
-			</div>
+			<GridContainer className={classes.root} justify="space-around">
+				<GridItem xs={12}>
+					<Typography variant="display1">{title}</Typography>
+				</GridItem>
+				{this.renderRecipes()}
+			</GridContainer>
 		);
 	}
 }

@@ -3,14 +3,8 @@ import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import Header from './Header';
-import RecipeNew from './RecipeNew';
-import RecipeView from './RecipeView';
-import RecipeEdit from './RecipeEdit';
-import Dashboard from './Dashboard';
-import Landing from './Landing';
-import './App.css';
 
-const Settings = () => <h2>Settings</h2>;
+import routes from '../routes';
 
 class App extends Component {
 	componentDidMount() {
@@ -24,12 +18,9 @@ class App extends Component {
 					<div>
 						<Header />
 						<div className="container">
-							<Route exact path="/" component={Landing} />
-							<Route exact path="/dashboard" component={Dashboard} />
-							<Route exact path="/recipes/:id" component={RecipeView} />
-							<Route path="/recipes/:id/edit" component={RecipeEdit} />
-							<Route path="/recipe/new" component={RecipeNew} />
-							<Route path="/settings" component={Settings} />
+							{routes.map((prop, key) => {
+								return <Route exact path={prop.path} key={key} component={prop.component} />;
+							})}
 						</div>
 					</div>
 				</BrowserRouter>

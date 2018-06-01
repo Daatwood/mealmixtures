@@ -2,55 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import { Button, Paper } from '@material-ui/core';
 import { Grid, List, ListItem, ListItemText, Checkbox, FormControlLabel, Typography, Avatar } from '@material-ui/core';
 import { Favorite, FavoriteBorder, Edit, Delete } from '@material-ui/icons';
-import { green, yellow, red, grey, deepOrange } from '@material-ui/core/colors';
-import Rating from './Rating';
-import * as actions from '../actions';
+import { green, grey, deepOrange } from '@material-ui/core/colors';
 
-const styles = (theme) => ({
-	root: {
-		flexGrow: 1,
-		paddingTop: '20px'
-	},
-	paper: {
-		padding: theme.spacing.unit * 2,
-		textAlign: 'left',
-		color: theme.palette.text.secondary
-	},
-	checked: {
-		textDecoration: 'line-through'
-	},
-	size: {
-		padding: theme.spacing.unit * 2,
-		width: 80,
-		height: 80
-	},
-	sizeIcon: {
-		fontSize: 40
-	},
-	button: {
-		margin: theme.spacing.unit
-	},
-	editButton: {
-		color: theme.palette.getContrastText(yellow[500]),
-		backgroundColor: yellow[500],
-		'&:hover': {
-			backgroundColor: yellow[700]
-		}
-	},
-	deleteButton: {
-		color: theme.palette.getContrastText(red[500]),
-		backgroundColor: red[500],
-		'&:hover': {
-			backgroundColor: red[700]
-		}
-	}
-});
+import recipeViewStyle from '../styles/recipeViewStyle';
+
+import Rating from '../components/Rating';
+import * as actions from '../actions';
 
 class RecipeView extends Component {
 	state = {
@@ -223,10 +185,6 @@ class RecipeView extends Component {
 	}
 }
 
-RecipeView.propTypes = {
-	classes: PropTypes.object.isRequired
-};
-
 function mapStateToProps(state) {
 	return {
 		recipe: state.recipes.active,
@@ -234,4 +192,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, actions)(withRouter(withStyles(styles)(RecipeView)));
+export default connect(mapStateToProps, actions)(withRouter(withStyles(recipeViewStyle)(RecipeView)));
