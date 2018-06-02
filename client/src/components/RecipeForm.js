@@ -3,7 +3,7 @@ import { reduxForm, Field, FieldArray } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import { Grid, Paper, Button } from '@material-ui/core';
-import { green, red } from '@material-ui/core/colors';
+import { red } from '@material-ui/core/colors';
 
 import formFields from './formFields';
 import RecipeField from './RecipeField';
@@ -30,18 +30,8 @@ const styles = (theme) => ({
 });
 
 class RecipeForm extends Component {
-	renderFields() {
-		return formFields.map(({ label, name, isArray, required }) => {
-			if (isArray) {
-				return <FieldArray key={name} name={name} label={label} component={RecipeFieldArray} />;
-			} else {
-				return <Field key={name} component={RecipeField} type="text" label={label} name={name} required />;
-			}
-		});
-	}
-
 	renderForm() {
-		const { classes, handleSubmit } = this.props;
+		const { classes, handleSubmit, initialValues } = this.props;
 		return (
 			<form onSubmit={handleSubmit} autoComplete="off">
 				<Grid container spacing={24}>
@@ -84,23 +74,19 @@ class RecipeForm extends Component {
 					</Grid>
 					<Grid item xs={12}>
 						<Button
-							variant="outlined"
+							variant="raised"
 							component={Link}
 							to="/dashboard"
-							color="secondary"
 							size="large"
-							style={{
-								color: red[600]
-							}}>
-							Back
+							style={{ color: 'white', backgroundColor: red[600] }}>
+							Cancel
 						</Button>
 						<Button
 							variant="raised"
 							type="submit"
 							size="large"
+							color="primary"
 							style={{
-								backgroundColor: green[600],
-								color: 'white',
 								float: 'right'
 							}}>
 							{!this.props.initialValues ? 'Save' : 'Create'}

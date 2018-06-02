@@ -12,7 +12,7 @@ export default ({ label, fields, meta: { error, submitFailed } }) => (
 			<ListItem>
 				<Typography variant="button">{label + 's'}</Typography>
 				<ListItemSecondaryAction>
-					<Button variant="fab" mini color="primary" aria-label="add" onClick={() => fields.push()}>
+					<Button variant="fab" mini color="secondary" aria-label="add" onClick={() => fields.push()}>
 						<AddIcon />
 					</Button>
 				</ListItemSecondaryAction>

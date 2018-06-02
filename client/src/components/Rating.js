@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { IconButton } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import { Star, StarBorder } from '@material-ui/icons';
-import { orange, grey } from '@material-ui/core/colors';
+import { orange } from '@material-ui/core/colors';
 
-const styles = {
+const styles = (theme) => ({
 	disabled: {
 		pointerEvents: 'none'
 	},
@@ -13,9 +14,16 @@ const styles = {
 		color: orange[500]
 	},
 	inactive: {
-		color: grey[300]
+		color: theme.palette.text.secondary
+	},
+	icon: {
+		fontSize: 60
+	},
+	control: {
+		width: 60,
+		height: 60
 	}
-};
+});
 
 class Rating extends Component {
 	state = {
@@ -27,20 +35,21 @@ class Rating extends Component {
 		const filled = i <= this.props.value;
 		const hovered = i <= this.state.hoverValue;
 		if (hovered) {
-			return <Star className={classes.active} />;
+			return <Star className={classNames(classes.active, classes.icon)} />;
 		} else if (!filled) {
-			return <StarBorder className={classes.inactive} />;
+			return <StarBorder className={classNames(classes.inactive, classes.icon)} />;
 		} else {
-			return <StarBorder className={classes.active} />;
+			return <StarBorder className={classNames(classes.active, classes.icon)} />;
 		}
 	}
 
 	render() {
-		const { max, value, disabled, onChange } = this.props;
+		const { classes, max, value, disabled, onChange } = this.props;
 		const rating = [];
 		for (let i = 1; i <= max; i++) {
 			rating.push(
 				<IconButton
+					className={classes.control}
 					key={i}
 					disabled={disabled}
 					disableRipple
@@ -60,7 +69,7 @@ class Rating extends Component {
 	}
 }
 
-Rating.propTypes = {
+Rating.defaultProps = {
 	disabled: false,
 	max: 5,
 	value: 0

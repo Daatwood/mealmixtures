@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 
@@ -7,6 +8,10 @@ import GridContainer from './GridContainer';
 import GridItem from './GridItem';
 
 import RecipeCard from './RecipeCard';
+import Loading from './Loading';
+
+import isOwner from '../utils/isOwner';
+import * as actions from '../actions';
 
 const styles = (theme) => ({
 	root: {
@@ -30,11 +35,11 @@ class RecipeList extends Component {
 	}
 
 	renderRecipes() {
-		const { recipes, loading, error } = this.props;
+		const { recipes, loading, error, user } = this.props;
 		if (loading) {
 			return (
 				<GridItem>
-					<Typography variant="display1">Loading Recipes...</Typography>
+					<Loading />
 				</GridItem>
 			);
 		} else if (error) {
@@ -43,7 +48,11 @@ class RecipeList extends Component {
 			return recipes.map((recipe) => {
 				return (
 					<GridItem key={recipe._id}>
-						<RecipeCard {...recipe} />
+						<RecipeCard
+							{...recipe}
+							isOwner={isOwner(user, recipe)}
+							onDelete={() => this.props.deleteRecipe(recipe._id, this.props.history)}
+						/>
 					</GridItem>
 				);
 			});
@@ -69,13 +78,13 @@ class RecipeList extends Component {
 	}
 }
 
-function mapStateToProps({ recipes }) {
-	console.log(recipes);
+function mapStateToProps({ auth, recipes }) {
 	return {
+		user: auth,
 		recipes: recipes.list,
 		loading: recipes.loading,
 		error: recipes.error
 	};
 }
 
-export default connect(mapStateToProps, null)(withStyles(styles)(RecipeList));
+export default connect(mapStateToProps, actions)(withRouter(withStyles(styles)(RecipeList)));

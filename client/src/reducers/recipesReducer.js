@@ -8,7 +8,6 @@ import {
 } from '../actions/types';
 const INITIAL_STATE = { list: [], active: null, error: null, loading: false };
 export default function(state = INITIAL_STATE, action) {
-	console.log(`STATE: ${state} for ${action.type}`);
 	let error;
 	switch (action.type) {
 		case FETCH_RECIPES:
@@ -26,6 +25,6 @@ export default function(state = INITIAL_STATE, action) {
 			error = action.payload || { message: action.payload.message };
 			return { ...state, active: action.payload, error: error, loading: false };
 		default:
-			return INITIAL_STATE;
+			return state;
 	}
 }

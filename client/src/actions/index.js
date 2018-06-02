@@ -34,12 +34,10 @@ export const submitRecipe = (values, history) => async (dispatch) => {
 };
 export const updateRecipe = (values, history) => async (dispatch) => {
 	const res = await axios.put('/api/recipes/' + values._id, values);
-	console.log(res);
 	history.push('/recipes/' + res.data._id);
 	dispatch({ type: FETCH_RECIPE_SUCCESS, payload: res.data });
 };
 export const deleteRecipe = (id, history) => async (dispatch) => {
 	const res = await axios.delete('/api/recipes/' + id);
 	history.push('/dashboard');
-	dispatch({ type: FETCH_RECIPES, payload: res.data });
 };

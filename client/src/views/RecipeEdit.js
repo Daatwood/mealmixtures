@@ -15,16 +15,22 @@ class RecipeEdit extends Component {
 	handleSubmit = (values) => {
 		this.props.updateRecipe(values, this.props.history);
 	};
+
+	renderContent() {
+		const { initialValues } = this.props;
+		return <RecipeForm initialValues={initialValues} onSubmit={this.handleSubmit} />;
+	}
+
 	render() {
 		return (
 			<div>
 				<Typography variant="display3">Edit Recipe</Typography>
-				<RecipeForm initialValues={this.props.initialValues} onSubmit={this.handleSubmit} />
+				{this.renderContent()}
 			</div>
 		);
 	}
 }
 function mapStateToProps({ recipes }) {
-	return { initialValues: recipes.active };
+	return { initialValues: recipes.active, loading: recipes.loading };
 }
 export default connect(mapStateToProps, actions)(withRouter(RecipeEdit));

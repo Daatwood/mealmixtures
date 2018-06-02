@@ -5,7 +5,6 @@ import { withStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Typography, Button, IconButton, Hidden } from '@material-ui/core';
 import BrandIcon from '@material-ui/icons/Kitchen';
 
-import GoogleButton from 'react-google-button';
 import { Link } from 'react-router-dom';
 
 const styles = {
@@ -29,12 +28,9 @@ class Header extends Component {
 				return [];
 			case false:
 				return [
-					<GoogleButton
-						type="light"
-						onClick={() => {
-							window.location = '/auth/google';
-						}}
-					/>
+					<Button key="1" component={Link} to="/login" color="inherit">
+						Login
+					</Button>
 				];
 			default:
 				return [
