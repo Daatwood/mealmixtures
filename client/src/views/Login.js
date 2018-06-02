@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import GoogleButton from 'react-google-button';
+import { FacebookLoginButton, GoogleLoginButton } from 'react-social-login-buttons';
 
 import { Typography } from '@material-ui/core';
 
@@ -15,11 +15,18 @@ class Login extends Component {
 					<GridItem xs={12}>
 						<Typography variant="display3">Login</Typography>
 					</GridItem>
-					<GridItem>
-						<GoogleButton
-							type="light"
+					<GridItem xs={12} style={{ maxWidth: '345px' }}>
+						<GoogleLoginButton
 							onClick={() => {
 								window.location = '/auth/google';
+							}}
+						/>
+					</GridItem>
+					<GridItem xs={12} style={{ maxWidth: '345px' }}>
+						<FacebookLoginButton
+							text="Login with Facebook"
+							onClick={() => {
+								window.location = '/auth/facebook';
 							}}
 						/>
 					</GridItem>
