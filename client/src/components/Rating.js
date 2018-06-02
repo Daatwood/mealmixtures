@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { IconButton } from '@material-ui/core';
+import { IconButton, Zoom } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import { Star, StarBorder } from '@material-ui/icons';
 import { orange } from '@material-ui/core/colors';
@@ -35,7 +35,11 @@ class Rating extends Component {
 		const filled = i <= this.props.value;
 		const hovered = i <= this.state.hoverValue;
 		if (hovered) {
-			return <Star className={classNames(classes.active, classes.icon)} />;
+			return (
+				<Zoom in={hovered} style={{ transitionDelay: i * 50 }}>
+					<Star className={classNames(classes.active, classes.icon)} />
+				</Zoom>
+			);
 		} else if (!filled) {
 			return <StarBorder className={classNames(classes.inactive, classes.icon)} />;
 		} else {
