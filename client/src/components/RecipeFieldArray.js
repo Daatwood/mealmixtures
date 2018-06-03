@@ -11,11 +11,6 @@ export default ({ label, fields, meta: { error, submitFailed } }) => (
 		<List>
 			<ListItem>
 				<Typography variant="button">{label + 's'}</Typography>
-				<ListItemSecondaryAction>
-					<Button variant="fab" mini color="secondary" aria-label="add" onClick={() => fields.push()}>
-						<AddIcon />
-					</Button>
-				</ListItemSecondaryAction>
 			</ListItem>
 			{submitFailed && error && <ListItem style={{ color: 'red' }}>{error}</ListItem>}
 			{fields.map((val, index) => (
@@ -28,6 +23,12 @@ export default ({ label, fields, meta: { error, submitFailed } }) => (
 					</ListItemSecondaryAction>
 				</ListItem>
 			))}
+			<ListItem>
+				<Button variant="raised" mini color="secondary" aria-label="add" onClick={() => fields.push()}>
+					<AddIcon />
+					Add {label}
+				</Button>
+			</ListItem>
 		</List>
 	</Paper>
 );

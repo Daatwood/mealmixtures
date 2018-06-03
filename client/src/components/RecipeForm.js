@@ -41,7 +41,7 @@ class RecipeForm extends Component {
 						</Paper>
 					</Grid>
 					<Grid item xs={12} sm={6}>
-						<Paper className={classes.paper}>
+						<Paper className={classes.paper} style={{ marginBottom: 20 }}>
 							<Field
 								key="description"
 								component={RecipeField}
@@ -51,8 +51,6 @@ class RecipeForm extends Component {
 								multiline
 							/>
 						</Paper>
-					</Grid>
-					<Grid item xs={12} sm={6}>
 						<Paper>
 							<FieldArray
 								key="ingredients"
@@ -62,7 +60,7 @@ class RecipeForm extends Component {
 							/>
 						</Paper>
 					</Grid>
-					<Grid item xs={12}>
+					<Grid item xs={12} sm={6}>
 						<Paper>
 							<FieldArray
 								key="directions"
