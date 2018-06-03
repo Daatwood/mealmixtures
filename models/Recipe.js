@@ -9,6 +9,7 @@ const recipeSchema = new Schema({
 	ingredients: [ String ],
 	directions: [ String ],
 	dateUpdated: Date,
+	views: { type: Number, default: 0 },
 	ratings: [ RatingSchema ],
 	_user: { type: Schema.Types.ObjectId, ref: 'User' }
 });

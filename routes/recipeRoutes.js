@@ -21,6 +21,7 @@ module.exports = (app) => {
 	// Show Recipe
 	app.get('/api/recipes/:recipeId', async (req, res) => {
 		const recipeId = req.params.recipeId;
+		// TODO Find and update view increment by 1
 		const recipe = await Recipe.findById(recipeId).exec();
 		if (recipe) {
 			res.status(200).send(recipe);

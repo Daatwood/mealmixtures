@@ -87,10 +87,10 @@ class RecipeView extends Component {
 					</GridItem>
 
 					<GridItem xs={6}>
-						<Typography variant="caption">34 Ratings</Typography>
+						<Typography variant="caption">{recipe.ratings.length} Ratings</Typography>
 					</GridItem>
 					<GridItem xs={6} style={{ textAlign: 'right' }}>
-						<Typography variant="caption">123 Views</Typography>
+						<Typography variant="caption">{recipe.views} Views</Typography>
 					</GridItem>
 
 					<GridItem xs={12} sm={6}>
