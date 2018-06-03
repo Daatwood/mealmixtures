@@ -22,6 +22,11 @@ export const fetchPrivateRecipes = () => async (dispatch) => {
 	const res = await axios.get('/api/recipes/private');
 	dispatch({ type: FETCH_RECIPES_SUCCESS, payload: res.data });
 };
+export const fetchFavoriteRecipes = () => async (dispatch) => {
+	dispatch({ type: FETCH_RECIPES });
+	const res = await axios.get('/api/recipes/favorite');
+	dispatch({ type: FETCH_RECIPES_SUCCESS, payload: res.data });
+};
 export const fetchRecipe = (id) => async (dispatch) => {
 	dispatch({ type: FETCH_RECIPE });
 	const res = await axios.get('/api/recipes/' + id);
