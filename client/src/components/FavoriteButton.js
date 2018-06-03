@@ -7,11 +7,12 @@ import largeIconStyle from '../styles/largeIconStyle';
 
 class FavoriteButton extends Component {
 	state = {
-		checked: false
+		checked: this.props.isFavorite
 	};
 
 	handleChange = () => {
 		this.setState({ checked: !this.state.checked });
+		this.props.onFavorite(!this.state.checked);
 	};
 
 	render() {
@@ -24,6 +25,7 @@ class FavoriteButton extends Component {
 				className={classes.control}
 				control={
 					<Checkbox
+						checked={this.props.isFavorite}
 						icon={<FavoriteBorder className={classes.icon} />}
 						checkedIcon={
 							<Zoom in={checked}>

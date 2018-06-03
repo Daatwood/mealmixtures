@@ -41,3 +41,11 @@ export const deleteRecipe = (id, history) => async (dispatch) => {
 	const res = await axios.delete('/api/recipes/' + id);
 	history.push('/dashboard');
 };
+export const addFavorite = (id) => async (dispatch) => {
+	const res = await axios.get(`/api/favorites/${id}/add`);
+	dispatch({ type: FETCH_USER, payload: res.data });
+};
+export const removeFavorite = (id) => async (dispatch) => {
+	const res = await axios.get(`/api/favorites/${id}/remove`);
+	dispatch({ type: FETCH_USER, payload: res.data });
+};

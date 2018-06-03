@@ -19,12 +19,17 @@ const styles = (theme) => ({
 });
 
 class RecipeCard extends Component {
+	handleFavorite = (value) => {
+		const { _id } = this.props;
+		value ? this.props.addFavorite(_id) : this.props.removeFavorite(_id);
+	};
+
 	render() {
-		const { classes, _id, title, description, dateUpdated, isOwner, onDelete } = this.props;
+		const { classes, _id, title, description, dateUpdated, isOwner, onDelete, onFavorite, isFavorite } = this.props;
 		return (
 			<Card className={classes.card}>
 				<CardHeader
-					action={<FavoriteButton />}
+					action={<FavoriteButton isFavorite={isFavorite} onFavorite={this.handleFavorite} />}
 					title={
 						<Typography variant="headline" color="primary">
 							{title}

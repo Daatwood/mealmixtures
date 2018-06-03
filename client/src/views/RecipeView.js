@@ -19,6 +19,7 @@ import GridContainer from '../components/GridContainer';
 import GridItem from '../components/GridItem';
 
 import isOwner from '../utils/isOwner';
+import isFavorite from '../utils/isFavorite';
 import * as actions from '../actions';
 
 class RecipeView extends Component {
@@ -51,13 +52,18 @@ class RecipeView extends Component {
 		this.setState({ rating: value });
 	};
 
+	handleFavorite = (value) => {
+		const { _id } = this.props.recipe;
+		value ? this.props.addFavorite(_id) : this.props.removeFavorite(_id);
+	};
+
 	handleDelete = () => {
 		this.props.deleteRecipe(this.props.recipe._id, this.props.history);
 	};
 
 	renderContent() {
 		if (this.props.recipe) {
-			const { classes } = this.props;
+			const { user, recipe, classes } = this.props;
 			return (
 				<GridContainer>
 					<GridItem xs={10} style={{ textAlign: 'center' }}>
@@ -66,7 +72,7 @@ class RecipeView extends Component {
 						</Typography>
 					</GridItem>
 					<GridItem xs={2} style={{ textAlign: 'right' }}>
-						<FavoriteButton />
+						<FavoriteButton isFavorite={isFavorite(user, recipe)} onFavorite={this.handleFavorite} />
 					</GridItem>
 
 					<GridItem xs={12} sm={10}>

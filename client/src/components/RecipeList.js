@@ -11,6 +11,7 @@ import RecipeCard from './RecipeCard';
 import Loading from './Loading';
 
 import isOwner from '../utils/isOwner';
+import isFavorite from '../utils/isFavorite';
 import * as actions from '../actions';
 
 const styles = (theme) => ({
@@ -51,7 +52,10 @@ class RecipeList extends Component {
 						<RecipeCard
 							{...recipe}
 							isOwner={isOwner(user, recipe)}
+							isFavorite={isFavorite(user, recipe)}
 							onDelete={() => this.props.deleteRecipe(recipe._id, this.props.history)}
+							addFavorite={this.props.addFavorite}
+							removeFavorite={this.props.removeFavorite}
 						/>
 					</GridItem>
 				);
