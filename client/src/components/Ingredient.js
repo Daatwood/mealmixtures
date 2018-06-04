@@ -7,7 +7,7 @@ function Ingredient({ ...props }) {
 		<ListItem {...rest} role={undefined} dense button disableGutters>
 			<Checkbox checked={checked} tabIndex={-1} className={boxStyle} />
 			<ListItemText className={itemStyle}>
-				<Typography variant="body1" className={textStyle}>
+				<Typography variant="headline" className={textStyle}>
 					{text}
 				</Typography>
 			</ListItemText>

@@ -52,7 +52,7 @@ class IngredientList extends Component {
 		const { classes, ...rest } = this.props;
 		return (
 			<Paper {...rest} className={classes.paper}>
-				<Typography variant="subheading" color="inherit">
+				<Typography variant="title" color="inherit">
 					Ingredients
 				</Typography>
 				<List>{this.renderIngredients()}</List>

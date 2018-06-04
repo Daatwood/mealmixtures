@@ -87,24 +87,21 @@ class RecipeView extends Component {
 					</GridItem>
 
 					<GridItem xs={6}>
-						<Typography variant="caption">{recipe.ratings.length} Ratings</Typography>
+						<Typography variant="subheading">{recipe.ratings.length} Ratings</Typography>
 					</GridItem>
 					<GridItem xs={6} style={{ textAlign: 'right' }}>
-						<Typography variant="caption">{recipe.views} Views</Typography>
+						<Typography variant="subheading">{recipe.views} Views</Typography>
 					</GridItem>
 
 					<GridItem xs={12} sm={6}>
 						<Paper className={classes.paper} style={{ marginBottom: 16 }}>
-							<Typography variant="subheading" color="inherit">
+							<Typography variant="title" color="inherit">
 								Description
 							</Typography>
-							<Typography variant="body1">{this.props.recipe.description}</Typography>
+							<Typography variant="headline">{this.props.recipe.description}</Typography>
 						</Paper>
 						<IngredientList ingredients={this.props.recipe.ingredients} />
 					</GridItem>
-					{/* <GridItem xs={12} sm={6}>
-						<IngredientList ingredients={this.props.recipe.ingredients} />
-					</GridItem> */}
 					<GridItem xs={12} sm={6}>
 						<DirectionList directions={this.props.recipe.directions} />
 					</GridItem>

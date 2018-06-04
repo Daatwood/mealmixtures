@@ -31,7 +31,7 @@ class RecipeCard extends Component {
 				<CardHeader
 					action={<FavoriteButton isFavorite={isFavorite} onFavorite={this.handleFavorite} />}
 					title={
-						<Typography variant="headline" color="primary">
+						<Typography variant="headline" color="primary" component={Link} to={`/recipes/${_id}`}>
 							{title}
 						</Typography>
 					}

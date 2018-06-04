@@ -15,7 +15,7 @@ export default ({ label, fields, meta: { error, submitFailed } }) => (
 			{submitFailed && error && <ListItem style={{ color: 'red' }}>{error}</ListItem>}
 			{fields.map((val, index) => (
 				<ListItem key={index} dense>
-					<Field name={val} type="text" component={RecipeField} label={`${label} #${index + 1}`} />
+					<Field name={val} type="text" component={RecipeField} multiline label={`${label} #${index + 1}`} />
 					<ListItemSecondaryAction>
 						<IconButton aria-label={`Remove ${label}`} onClick={() => fields.remove(index)}>
 							<DeleteIcon />

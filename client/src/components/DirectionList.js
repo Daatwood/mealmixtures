@@ -52,7 +52,7 @@ class DirectionList extends Component {
 		const { classes } = this.props;
 		return (
 			<Paper className={classes.paper}>
-				<Typography variant="subheading" color="inherit">
+				<Typography variant="title" color="inherit">
 					Directions
 				</Typography>
 				<List>{this.renderDirections()}</List>

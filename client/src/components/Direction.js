@@ -7,7 +7,7 @@ function Direction({ ...props }) {
 		<ListItem {...rest} role={undefined} button dense>
 			<Avatar className={avatarStyle}>{step}.</Avatar>
 			<ListItemText className={itemStyle}>
-				<Typography variant="body1" className={textStyle}>
+				<Typography variant="subheading" className={textStyle}>
 					{text}
 				</Typography>
 			</ListItemText>
