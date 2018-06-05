@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { Menu, MenuItem, IconButton, ListItemIcon, ListItemText } from '@material-ui/core';
-import { MoreVert, Edit, Delete } from '@material-ui/icons';
+import { MoreVert, Edit, DeleteForever as Delete } from '@material-ui/icons';
 
 import largeIconStyle from '../styles/largeIconStyle';
 

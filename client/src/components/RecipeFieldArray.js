@@ -2,7 +2,7 @@ import React from 'react';
 import RecipeField from './RecipeField';
 import { Button, Typography, IconButton, Paper } from '@material-ui/core';
 import { List, ListItem, ListItemSecondaryAction } from '@material-ui/core';
-import { Add as AddIcon, Delete as DeleteIcon } from '@material-ui/icons';
+import { AddCircle as AddIcon, RemoveCircleOutline as DeleteIcon } from '@material-ui/icons';
 
 import { Field } from 'redux-form';
 
@@ -26,7 +26,7 @@ export default ({ label, fields, meta: { error, submitFailed } }) => (
 			<ListItem>
 				<Button variant="raised" mini color="secondary" aria-label="add" onClick={() => fields.push()}>
 					<AddIcon />
-					Add {label}
+					{label}
 				</Button>
 			</ListItem>
 		</List>
