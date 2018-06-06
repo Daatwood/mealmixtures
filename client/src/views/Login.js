@@ -22,14 +22,15 @@ class Login extends Component {
 							}}
 						/>
 					</GridItem>
-					<GridItem xs={12} style={{ maxWidth: '345px' }}>
+					{/* WIP Not fully implemented yet*/}
+					{/* <GridItem xs={12} style={{ maxWidth: '345px' }}>
 						<FacebookLoginButton
 							text="Login with Facebook"
 							onClick={() => {
 								window.location = '/auth/facebook';
 							}}
 						/>
-					</GridItem>
+					</GridItem> */}
 				</GridContainer>
 			</div>
 		);
