@@ -18,6 +18,20 @@ module.exports = (app) => {
 		res.send(recipes);
 	});
 
+	// Index current user favorites
+	app.get('/api/recipes/favorite', requireLogin, async (req, res) => {
+		const recipes = await Recipe.find(
+			{
+				_id: { $in: req.user.favorites }
+			},
+			function(err, docs) {
+				console.log(docs);
+			}
+		);
+
+		res.send(recipes);
+	});
+
 	// Show Recipe
 	app.get('/api/recipes/:recipeId', async (req, res) => {
 		const recipeId = req.params.recipeId;

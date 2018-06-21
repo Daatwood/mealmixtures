@@ -8,25 +8,25 @@ import GridContainer from '../components/GridContainer';
 import GridItem from '../components/GridItem';
 import { Button } from '@material-ui/core';
 
-class Dashboard extends Component {
+class Favorites extends Component {
 	render() {
-		const { fetchPrivateRecipes } = this.props;
+		const { fetchFavoriteRecipes } = this.props;
 		return (
 			<GridContainer>
 				<GridItem sm={9}>
 					<Typography variant="display3">Dashboard</Typography>
 				</GridItem>
 				<GridItem sm={3}>
-					<Button variant="raised" color="secondary" component={Link} to="/dashboard/favorites">
-						View Favorites
+					<Button variant="raised" color="secondary" component={Link} to="/dashboard">
+						View Your Recipes
 					</Button>
 				</GridItem>
 				<GridItem>
-					<RecipeList title="Your Recipes" recipesAction={fetchPrivateRecipes} />
+					<RecipeList title="Favorites" recipesAction={fetchFavoriteRecipes} />
 				</GridItem>
 			</GridContainer>
 		);
 	}
 }
 
-export default connect(null, actions)(Dashboard);
+export default connect(null, actions)(Favorites);

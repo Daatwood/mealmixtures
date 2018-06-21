@@ -38,7 +38,7 @@ class Header extends Component {
 						Add Recipe
 					</Button>,
 					<Button key="2" component={Link} to="/dashboard" color="inherit">
-						Your Recipes
+						Dashboard
 					</Button>,
 					<Button key="3" href="/api/logout" color="inherit">
 						Logout
@@ -48,7 +48,7 @@ class Header extends Component {
 	}
 
 	render() {
-		const { classes } = this.props;
+		const { classes, auth } = this.props;
 		return (
 			<div className={classes.root}>
 				<AppBar position="static">
@@ -56,14 +56,19 @@ class Header extends Component {
 						<Hidden only="xs">
 							<IconButton
 								component={Link}
-								to="/"
+								to={!!auth ? '/dashboard' : '/'}
 								className={classes.menuButton}
 								color="inherit"
 								aria-label="Menu">
 								<BrandIcon />
 							</IconButton>
 						</Hidden>
-						<Typography component={Link} to="/" variant="title" color="inherit" className={classes.flex}>
+						<Typography
+							component={Link}
+							to={!!auth ? '/dashboard' : '/'}
+							variant="title"
+							color="inherit"
+							className={classes.flex}>
 							Meal Mixtures
 						</Typography>
 						{this.renderContent()}

@@ -52,7 +52,7 @@ class RecipeList extends Component {
 						<RecipeCard
 							{...recipe}
 							isOwner={isOwner(user, recipe)}
-							isFavorite={isFavorite(user, recipe)}
+							favorited={isFavorite(user, recipe)}
 							onDelete={() => this.props.deleteRecipe(recipe._id, this.props.history)}
 							addFavorite={this.props.addFavorite}
 							removeFavorite={this.props.removeFavorite}

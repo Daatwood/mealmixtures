@@ -71,7 +71,7 @@ class RecipeView extends Component {
 						</Typography>
 					</GridItem>
 					<GridItem xs={2} style={{ textAlign: 'right' }}>
-						<FavoriteButton isFavorite={isFavorite(user, recipe)} onFavorite={this.handleFavorite} />
+						<FavoriteButton favorited={isFavorite(user, recipe)} onFavorite={this.handleFavorite} />
 					</GridItem>
 
 					<GridItem xs={12} sm={10}>
