@@ -53,16 +53,6 @@ class Header extends Component {
 			<div className={classes.root}>
 				<AppBar position="static">
 					<Toolbar>
-						<Hidden only="xs">
-							<IconButton
-								component={Link}
-								to={!!auth ? '/dashboard' : '/'}
-								className={classes.menuButton}
-								color="inherit"
-								aria-label="Menu">
-								<BrandIcon />
-							</IconButton>
-						</Hidden>
 						<Typography
 							component={Link}
 							to={!!auth ? '/dashboard' : '/'}
