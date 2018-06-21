@@ -27,21 +27,13 @@ class IngredientList extends Component {
 	};
 
 	renderIngredients() {
-		const { classes, ingredients } = this.props;
+		const { ingredients } = this.props;
 		return ingredients.map((value, index) => {
-			const checked = this.state.checked.indexOf(value) !== -1;
-			const itemStyle = checked ? classes.itemChecked : null;
-			const textStyle = checked ? classes.textChecked : null;
-			const boxStyle = checked ? classes.checkboxChecked : classes.checkbox;
 			return (
 				<Ingredient
 					key={index}
-					step={index + 1}
 					text={value}
-					checked={checked}
-					boxStyle={boxStyle}
-					itemStyle={itemStyle}
-					textStyle={textStyle}
+					checked={this.state.checked.indexOf(value) !== -1}
 					onClick={this.handleToggle(value)}
 				/>
 			);
@@ -49,9 +41,9 @@ class IngredientList extends Component {
 	}
 
 	render() {
-		const { classes, ...rest } = this.props;
+		const { classes } = this.props;
 		return (
-			<Paper {...rest} className={classes.paper}>
+			<Paper className={classes.paper}>
 				<Typography variant="title" color="inherit">
 					Ingredients
 				</Typography>

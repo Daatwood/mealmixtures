@@ -1,8 +1,13 @@
 import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
 import { ListItem, ListItemText, Typography, Avatar } from '@material-ui/core';
+import directionStyle from '../styles/directionStyle';
 
-function Direction({ ...props }) {
-	const { step, text, avatarStyle, itemStyle, textStyle, ...rest } = props;
+const Direction = ({ ...props }) => {
+	const { classes, step, text, checked, ...rest } = props;
+	const itemStyle = checked ? classes.itemChecked : null;
+	const textStyle = checked ? classes.textChecked : null;
+	const avatarStyle = checked ? classes.checkedAvatar : classes.avatar;
 	return (
 		<ListItem {...rest} role={undefined} button dense>
 			<Avatar className={avatarStyle}>{step}.</Avatar>
@@ -13,6 +18,6 @@ function Direction({ ...props }) {
 			</ListItemText>
 		</ListItem>
 	);
-}
+};
 
-export default Direction;
+export default withStyles(directionStyle)(Direction);

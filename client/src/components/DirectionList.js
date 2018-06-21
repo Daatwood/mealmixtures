@@ -28,20 +28,14 @@ class DirectionList extends Component {
 	};
 
 	renderDirections() {
-		const { classes, directions } = this.props;
+		const { directions } = this.props;
 		return directions.map((value, index) => {
-			const checked = this.state.checked.indexOf(value) !== -1;
-			const itemStyle = checked ? classes.itemChecked : null;
-			const textStyle = checked ? classes.textChecked : null;
-			const avatarStyle = checked ? classes.checkedAvatar : classes.avatar;
 			return (
 				<Direction
 					key={index}
 					step={index + 1}
 					text={value}
-					avatarStyle={avatarStyle}
-					itemStyle={itemStyle}
-					textStyle={textStyle}
+					checked={this.state.checked.indexOf(value) !== -1}
 					onClick={this.handleToggle(value)}
 				/>
 			);

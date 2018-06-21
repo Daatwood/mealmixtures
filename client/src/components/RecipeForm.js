@@ -31,7 +31,7 @@ const styles = (theme) => ({
 
 class RecipeForm extends Component {
 	renderForm() {
-		const { classes, handleSubmit, initialValues } = this.props;
+		const { classes, handleSubmit } = this.props;
 		return (
 			<form onSubmit={handleSubmit} autoComplete="off">
 				<Grid container spacing={24}>

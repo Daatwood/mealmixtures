@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import { Paper } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
@@ -80,8 +79,8 @@ class RecipeView extends Component {
 					</GridItem>
 					<GridItem xs={12} sm={2} style={{ textAlign: 'right' }}>
 						<ActionMenu
-							recipeId={this.props.recipe._id}
-							isOwner={isOwner(this.props.user, this.props.recipe)}
+							recipeId={recipe._id}
+							isOwner={isOwner(user, recipe)}
 							onDelete={this.handleDelete}
 						/>
 					</GridItem>
@@ -98,12 +97,12 @@ class RecipeView extends Component {
 							<Typography variant="title" color="inherit">
 								Description
 							</Typography>
-							<Typography variant="headline">{this.props.recipe.description}</Typography>
+							<Typography variant="headline">{recipe.description}</Typography>
 						</Paper>
-						<IngredientList ingredients={this.props.recipe.ingredients} />
+						<IngredientList ingredients={recipe.ingredients} />
 					</GridItem>
 					<GridItem xs={12} sm={6}>
-						<DirectionList directions={this.props.recipe.directions} />
+						<DirectionList directions={recipe.directions} />
 					</GridItem>
 				</GridContainer>
 			);
