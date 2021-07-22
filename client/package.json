@@ -3,12 +3,6 @@
 	"version": "0.1.0",
 	"private": true,
 	"proxy": {
-		"/auth/google": {
-			"target": "http://localhost:5005"
-		},
-		"/auth/facebook": {
-			"target": "http://localhost:5005"
-		},
 		"/api/*": {
 			"target": "http://localhost:5005"
 		}

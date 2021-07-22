@@ -22,7 +22,7 @@ passport.use(
 		{
 			clientID: keys.googleClientID,
 			clientSecret: keys.googleClientSecret,
-			callbackURL: '/auth/google/callback',
+			callbackURL: '/api/auth/google/callback',
 			proxy: true
 		},
 		// Callback function of oauth strategy
@@ -49,7 +49,7 @@ passport.use(
 		{
 			clientID: keys.facebookAppID,
 			clientSecret: keys.facebookAppSecret,
-			callbackURL: '/auth/facebook/callback'
+			callbackURL: '/api/auth/facebook/callback'
 		},
 		async (accessToken, refreshToken, profile, done) => {
 			const existingUser = await User.findOne({ facebookId: profile.id });

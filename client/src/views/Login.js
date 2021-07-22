@@ -18,7 +18,7 @@ class Login extends Component {
 					<GridItem xs={12} style={{ maxWidth: '345px' }}>
 						<GoogleLoginButton
 							onClick={() => {
-								window.location = '/auth/google';
+								window.location = '/api/auth/google';
 							}}
 						/>
 					</GridItem>
