@@ -25,7 +25,7 @@ class RecipeCard extends Component {
 	};
 
 	render() {
-		const { classes, _id, title, description, dateUpdated, isOwner, onDelete, onFavorite, favorited } = this.props;
+		const { classes, _id, title, description, dateUpdated, isOwner, onDelete, favorited } = this.props;
 		return (
 			<Card className={classes.card}>
 				<CardHeader

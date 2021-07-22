@@ -73,9 +73,9 @@ class RecipeList extends Component {
 		const { classes, title } = this.props;
 		return (
 			<GridContainer className={classes.root} justify="space-around">
-				<GridItem xs={12}>
+				{title && <GridItem xs={12}>
 					<Typography variant="display1">{title}</Typography>
-				</GridItem>
+				</GridItem>}
 				{this.renderRecipes()}
 			</GridContainer>
 		);

@@ -12,7 +12,7 @@ module.exports = (app) => {
 	});
 
 	// Index current user recipes
-	app.get('/api/recipes/private', requireLogin, async (req, res) => {
+	app.get('/api/recipes/user', requireLogin, async (req, res) => {
 		const recipes = await Recipe.find({ _user: req.user.id });
 
 		res.send(recipes);

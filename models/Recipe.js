@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const RatingSchema = require('./Rating');
 const recipeSchema = new Schema({
 	title: String,
-	private: { type: Boolean, default: true },
+	private: { type: Boolean, default: false },
 	description: String,
 	ingredients: [ String ],
 	directions: [ String ],

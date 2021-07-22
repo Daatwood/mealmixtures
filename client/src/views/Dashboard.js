@@ -10,19 +10,24 @@ import { Button } from '@material-ui/core';
 
 class Dashboard extends Component {
 	render() {
-		const { fetchPrivateRecipes } = this.props;
+		const { fetchUserRecipes } = this.props;
 		return (
 			<GridContainer>
-				<GridItem sm={9}>
+				<GridItem sm={12} md={6}>
 					<Typography variant="display3">Dashboard</Typography>
 				</GridItem>
-				<GridItem sm={3}>
-					<Button variant="raised" color="secondary" component={Link} to="/dashboard/favorites">
+				<GridItem sm={6} md={3}>
+					<Button variant="raised" color="primary" component={Link} to="/recipe/new">
+						New Recipe
+					</Button>
+				</GridItem>
+				<GridItem sm={6} md={3}>
+					<Button style={{float: 'right'}}variant="raised" color="secondary" component={Link} to="/favorites">
 						View Favorites
 					</Button>
 				</GridItem>
 				<GridItem>
-					<RecipeList title="Your Recipes" recipesAction={fetchPrivateRecipes} />
+					<RecipeList title="Your Recipes" recipesAction={fetchUserRecipes} />
 				</GridItem>
 			</GridContainer>
 		);

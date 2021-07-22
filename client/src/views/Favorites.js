@@ -14,15 +14,15 @@ class Favorites extends Component {
 		return (
 			<GridContainer>
 				<GridItem sm={9}>
-					<Typography variant="display3">Dashboard</Typography>
+					<Typography variant="display3">Favorites</Typography>
 				</GridItem>
 				<GridItem sm={3}>
 					<Button variant="raised" color="secondary" component={Link} to="/dashboard">
-						View Your Recipes
+						View your Recipes
 					</Button>
 				</GridItem>
 				<GridItem>
-					<RecipeList title="Favorites" recipesAction={fetchFavoriteRecipes} />
+					<RecipeList recipesAction={fetchFavoriteRecipes} />
 				</GridItem>
 			</GridContainer>
 		);

@@ -8,7 +8,6 @@ import { Typography } from '@material-ui/core';
 
 import recipeViewStyle from '../styles/recipeViewStyle';
 
-import Rating from '../components/Rating';
 import IngredientList from '../components/IngredientList';
 import DirectionList from '../components/DirectionList';
 import Loading from '../components/Loading';
@@ -65,33 +64,21 @@ class RecipeView extends Component {
 			const { user, recipe, classes } = this.props;
 			return (
 				<GridContainer>
-					<GridItem xs={10} style={{ textAlign: 'center' }}>
+					<GridItem xs={12} style={{ textAlign: 'center' }}>
 						<Typography color="primary" variant="display3">
 							{this.props.recipe.title}
 						</Typography>
 					</GridItem>
-					<GridItem xs={2} style={{ textAlign: 'right' }}>
-						<FavoriteButton favorited={isFavorite(user, recipe)} onFavorite={this.handleFavorite} />
+					<GridItem xs={6}>
+						<FavoriteButton  style={{margin: '0 5%'}} favorited={isFavorite(user, recipe)} onFavorite={this.handleFavorite} />
 					</GridItem>
-
-					<GridItem xs={12} sm={10}>
-						<Rating value={this.state.rating} max={5} onChange={(value) => this.handleRating(value)} />
-					</GridItem>
-					<GridItem xs={12} sm={2} style={{ textAlign: 'right' }}>
+					<GridItem xs={6} style={{ textAlign: 'right' }}>
 						<ActionMenu
 							recipeId={recipe._id}
 							isOwner={isOwner(user, recipe)}
 							onDelete={this.handleDelete}
 						/>
 					</GridItem>
-
-					<GridItem xs={6}>
-						<Typography variant="subheading">{recipe.ratings.length} Ratings</Typography>
-					</GridItem>
-					<GridItem xs={6} style={{ textAlign: 'right' }}>
-						<Typography variant="subheading">{recipe.views} Views</Typography>
-					</GridItem>
-
 					<GridItem xs={12} sm={6}>
 						<Paper className={classes.paper} style={{ marginBottom: 16 }}>
 							<Typography variant="title" color="inherit">
@@ -103,6 +90,9 @@ class RecipeView extends Component {
 					</GridItem>
 					<GridItem xs={12} sm={6}>
 						<DirectionList directions={recipe.directions} />
+					</GridItem>
+					<GridItem xs={6} style={{ textAlign: 'right' }}>
+						<Typography variant="subheading">{recipe.views} Views</Typography>
 					</GridItem>
 				</GridContainer>
 			);

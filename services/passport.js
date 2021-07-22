@@ -35,7 +35,10 @@ passport.use(
 			}
 
 			// Record with profile Id is not found, creating it
-			const user = await new User({ googleId: profile.id }).save();
+			const user = await new User({ 
+				googleId: profile.id, 
+				googleAccessToken: accessToken, 
+				googleRefreshToken: refreshToken }).save();
 			done(null, user);
 		}
 	)

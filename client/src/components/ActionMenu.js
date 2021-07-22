@@ -26,7 +26,7 @@ class ActionMenu extends Component {
 	};
 	render() {
 		const { anchorEl } = this.state;
-		const { recipeId, isOwner, classes } = this.props;
+		const { recipeId, isOwner } = this.props;
 		if (isOwner) {
 			return (
 				<div>

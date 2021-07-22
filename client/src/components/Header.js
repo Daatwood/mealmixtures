@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Typography, Button, IconButton, Hidden } from '@material-ui/core';
 import BrandIcon from '@material-ui/icons/Kitchen';
+import { Add as AddIcon } from '@material-ui/icons';
+
 
 import { Link } from 'react-router-dom';
 
@@ -35,10 +37,7 @@ class Header extends Component {
 			default:
 				return [
 					<Button key="1" component={Link} to="/recipe/new" color="inherit">
-						Add Recipe
-					</Button>,
-					<Button key="2" component={Link} to="/dashboard" color="inherit">
-						Dashboard
+						<AddIcon/>
 					</Button>,
 					<Button key="3" href="/api/logout" color="inherit">
 						Logout

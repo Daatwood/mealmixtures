@@ -87,7 +87,7 @@ class RecipeForm extends Component {
 							style={{
 								float: 'right'
 							}}>
-							{!this.props.initialValues ? 'Save' : 'Create'}
+							Save
 						</Button>
 					</Grid>
 				</Grid>
