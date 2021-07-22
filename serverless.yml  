@@ -1,0 +1,21 @@
+org: daatwood
+app: mealmixtures
+service: api
+provider:
+  name: aws
+  runtime: nodejs15.11
+  stage: dev
+  region: us-east-1
+  memorySize: 32
+functions:
+  app:
+    handler: app/app.handler
+    events: 
+      - http: 
+          path: /
+          method: ANY
+          cors: true
+      - http: 
+          path: /{proxy+}
+          method: ANY
+          cors: true

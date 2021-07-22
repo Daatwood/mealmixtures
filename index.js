@@ -1,4 +1,5 @@
 require('dotenv').config();
+const serverless = require('serverless-http');
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
@@ -45,14 +46,15 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const PORT = process.env.PORT || 5005;
-app
-	.listen(PORT, function() {
-		console.log('Successfully started on ' + PORT);
-	})
-	.on('error', function(err) {
-		if (err.errno === 'EADDRINUSE') {
-			console.log(PORT + ' is busy.');
-		} else {
-			console.log(err);
-		}
-	});
+serverless(app)
+// app
+// 	.listen(PORT, function() {
+// 		console.log('Successfully started on ' + PORT);
+// 	})
+// 	.on('error', function(err) {
+// 		if (err.errno === 'EADDRINUSE') {
+// 			console.log(PORT + ' is busy.');
+// 		} else {
+// 			console.log(err);
+// 		}
+// 	});
