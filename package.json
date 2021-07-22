@@ -4,8 +4,8 @@
 	"description": "",
 	"main": "index.js",
 	"engines": {
-		"node": "8.11.1",
-		"npm": "5.6.0"
+		"node": "15.11.0",
+		"npm": "7.15.1"
 	},
 	"scripts": {
 		"start": "node index.js",
@@ -27,6 +27,6 @@
 		"nodemon": "^1.17.4",
 		"passport": "^0.4.0",
 		"passport-facebook": "^2.1.1",
-		"passport-google-oauth20": "^1.0.0"
+		"passport-google-oauth20": "^2.0.0"
 	}
 }
